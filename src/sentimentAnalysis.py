@@ -3,6 +3,7 @@
 # import SentimentIntensityAnalyzer class
 # from vaderSentiment.vaderSentiment module.
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+import simplejson
 
 # function to print sentiments
 # of the sentence.
@@ -19,5 +20,10 @@ def sentiment_scores(sentence):
 
 # Driver code
 if __name__ == "__main__":
-    sentiment_scores("study is going on as usual")
-    sentiment_scores("I am very sad today.")
+    
+    yorumlar = []
+    dosya = open('yorumlar.txt', 'r')
+    yorumlar = simplejson.load(dosya)
+    dosya.close()
+
+    #sentiment_scores(yorumlar[0])
