@@ -39,4 +39,5 @@ if __name__ == "__main__":
             TotalSentiment += sentiment_dict['compound']
             SentimentCount += 1
 
+    print("Data Count:", SentimentCount)
     print("Average Sentiment:", TotalSentiment / SentimentCount)
