@@ -10,7 +10,7 @@ def sentiment_scores(sentence):
 	sid_obj = SentimentIntensityAnalyzer()
 	sentiment_dict = sid_obj.polarity_scores(sentence)
 	print("Sentence:",sentence)
-    print("Sentiment score is ", sentiment_dict['compound'])
+	print("Sentiment score is ", sentiment_dict['compound'])
 	print("Overall sentiment dictionary is : ", sentiment_dict)
     
 
