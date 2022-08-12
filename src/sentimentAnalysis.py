@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
     for yorum in yorumlar:
         sentiment_dict = sid_obj.polarity_scores(yorum)
-        if(abs(sentiment_dict['compound']) > 0.1):
+        if(abs(sentiment_dict['compound']) >= 0.0):
             print("")
             print("Sentence:", yorum)
             print("Sentiment score is ", sentiment_dict['compound'])
