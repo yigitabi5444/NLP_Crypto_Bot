@@ -29,7 +29,7 @@ try:
     for subreddit in subredditler:
         sekilyaz('Subreddit değişiyor: %s' % subreddit)
         sub = r.subreddit(subreddit)
-        for submission in sub.hot(limit = 10):
+        for submission in sub.top(time_filter="day",limit = 10):
             sekilyaz('Post değişiyor: %s' % submission.title)
             post = r.submission(submission.id)
             if post.stickied:
