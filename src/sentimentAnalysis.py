@@ -20,10 +20,23 @@ def sentiment_scores(sentence):
 
 # Driver code
 if __name__ == "__main__":
-    
+    sid_obj = SentimentIntensityAnalyzer()
     yorumlar = []
     dosya = open('yorumlar.txt', 'r')
     yorumlar = simplejson.load(dosya)
     dosya.close()
 
-    #sentiment_scores(yorumlar[0])
+    TotalSentiment = 0
+    SentimentCount = 0
+
+    for yorum in yorumlar:
+        sentiment_dict = sid_obj.polarity_scores(yorum)
+        if(sentiment_dict['compound'] != 0):
+            print("")
+            print("Sentence:", yorum)
+            print("Sentiment score is ", sentiment_dict['compound'])
+            print("")
+            TotalSentiment += sentiment_dict['compound']
+            SentimentCount += 1
+
+    print("Average Sentiment:", TotalSentiment / SentimentCount)
