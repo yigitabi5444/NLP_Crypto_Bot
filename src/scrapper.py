@@ -1,6 +1,8 @@
 import praw
 import simplejson
 from time import strftime,localtime
+import re
+
 def sekilyaz(yazi):
     print(strftime("%H:%M:%S",localtime())+' %s' % yazi)
 
@@ -27,7 +29,7 @@ try:
     for subreddit in subredditler:
         sekilyaz('Subreddit değişiyor: %s' % subreddit)
         sub = r.subreddit(subreddit)
-        for submission in sub.hot(limit = 5):
+        for submission in sub.hot(limit = 10):
             sekilyaz('Post değişiyor: %s' % submission.title)
             post = r.submission(submission.id)
             if post.stickied:
@@ -36,7 +38,12 @@ try:
             else:
                 post.comments.replace_more(limit=None)
                 for yorum in post.comments.list():
-                    yorumlar.append(yorum.body)
+                    if re.search("btc",yorum.body,re.IGNORECASE):
+                        yorumlar.append(yorum.body)
+                    elif re.search("bitcoin",yorum.body,re.IGNORECASE):
+                        yorumlar.append(yorum.body)
+                    else:
+                        continue
                 sekilyaz('Yorumlar eklendi')
 except KeyboardInterrupt:
     sekilyaz('Kullanıcı çıkışı yapıldı.')
